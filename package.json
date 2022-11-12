@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test": "npm run jtest",
     "start": "ts-node src/backend/backend.ts"
   },
   "dependencies": {
