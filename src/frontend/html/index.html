@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="../css/index.css">
+    <title>Moveis</title>
 </head>
 <body>
     <!-- 
@@ -13,27 +16,238 @@
     -->
     <header>
         <nav class="navbar">
-            <ul>
-                <li><a href="/">Adicionar móvel</a></li>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                <!-- Button trigger modal -->
+                <button id="addMoveis" type="button" class="btn btn-primary ms-auto" data-toggle="modal" data-target="#addMovelModal" onclick=modalOpen()>
+                    Adicionar móveis 
+                </button>
             </ul>
         </nav>
     </header>
 
     <!-- Aqui vai o sistema de ordenação -->
     <div class="ordenador">
+        <!-- <img src="https://media.istockphoto.com/id/1147544807/pt/vetorial/thumbnail-image-vector-graphic.jpg?s=612x612&w=is&k=20&c=gwYEY4lZT0_YGTGioCo8Pz6WUMfEsRicS1sMQQm_2Eo=" alt=""> -->
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="addMovelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Móveis</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" id="nome" name="nome" placeholder="Sofá cama"><br>
+                    <label for="imagem">Imagem:</label><br>
+                    <input type="text" id="imagem" name="imagem" placeholder="exemplo.com/src/imagem.jpeg"><br>
+                    <label for="preco">Preço:</label><br>
+                    <input type="number" id="preco" name="preco" placeholder="200,00"><br>
+                    <label for="ambiente">Ambiente:</label><br>
+                    <input type="text" id="ambiente" name="ambiente" placeholder="Sala"><br>
+                    <input type="submit" value="Submit" onclick=sendDataPost()>
+                  </form> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick=modalClose()>Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
+    
+    <!-- Modal -->
+    <div class="modal fade" id="editarMovelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar móveis</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label for="id">ID:</label><br>
+                    <input type="text" id="editarid" name="id" placeholder="Sofá cama" disabled><br>
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" id="editarnome" name="nome" placeholder="Sofá cama"><br>
+                    <label for="imagem">Imagem:</label><br>
+                    <input type="text" id="editarimagem" name="imagem" placeholder="exemplo.com/src/imagem.jpeg"><br>
+                    <label for="preco">Preço:</label><br>
+                    <input type="number" id="editarpreco" name="preco" placeholder="200,00"><br>
+                    <label for="ambiente">Ambiente:</label><br>
+                    <input type="text" id="editarambiente" name="ambiente" placeholder="Sala"><br>
+                    <input type="submit" value="Submit" onclick=sendDataPut()>
+                  </form> 
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick=editarMovelFechar()>Close</button>
+            </div>
+        </div>
+        </div>
     </div>
 
     <!-- Aqui vai a listagem de móveis, uma request no axios deve ser feita pra listar os móveis do BD -->
-    <div class="listarMoveis">
+    <div class="container flex">
+    <div id="listarMoveis" class="row">
         <!-- Em cada card de móvel dedve ter uma opção para editá-lo, que leva pra página de editar móveis ou abre um modal de edição -->
         <!-- Em cada card também deve ter um botão de deletar o móvel -->
     </div>
+    </div>
 
     <footer>
-        <h1>Exemplo</h1>
+        <div class="footer-area-bottom">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="footer-icons">
+                    <ul>
+                      <li>
+                        <a href="https://github.com/jmarcosltc">
+                          <i class="fa fa-github"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://www.instagram.com/joao_mgc/">
+                          <i class="fa fa-instagram"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div class="credits">
+                    <a href="https://github.com/jmarcosltc?tab=repositories">Outros projetos</a> | <a href="#">Termos e condições</a>
+                  </div>
+                  <div class="copyright text-center">
+                    <p>
+                      &copy; Copyright 2022. | <strong><a href="#">João Marcos Carneiro </a></strong> | All Rights Reserved.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </footer>
 
-    </script src="../js/index.js">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        const modalOpen = () => {
+            $("#addMovelModal").modal("show");
+        }
+        const modalClose = () => {
+            $("#addMovelModal").modal("hide");
+        }
+
+        const editarMovelAbrir = async (btn) => {
+            $("#editarMovelModal").modal("show");
+
+            
+            const moveisList = await fetch(`http://localhost:3030/moveis?id=${$(btn).parent().attr('id')}`, {
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            method: 'get'
+            })
+            .then(res => res.json()) 
+            .then((data) => {
+            return data
+            }).catch(function(error) {
+            console.log(error);
+            return 0;
+            });
+            
+            document.getElementById('editarid').value = moveisList[0].id != undefined ? moveisList[0].id : ''
+            document.getElementById('editarambiente').value = moveisList[0].ambiente != undefined ? moveisList[0].ambiente : ''
+            document.getElementById('editarnome').value = moveisList[0].nome != undefined ? moveisList[0].nome : ''
+            document.getElementById('editarimagem').value = moveisList[0].imagem != undefined ? moveisList[0].imagem : ''
+            document.getElementById('editarpreco').value =  moveisList[0].preco != undefined ? moveisList[0].preco : 0
+            
+        }
+        
+        const editarMovelFechar = () => {
+            $("#editarMovelModal").modal("hide");
+        }
+
+
+        // Aparentemente não funciona no firefox (?)
+        // Talvez algo que tenha a ver com CORS
+        const sendDataPost = () => {
+            const ambiente = document.getElementById('ambiente').value
+            const nome = document.getElementById('nome').value
+            const imagem = document.getElementById('imagem').value
+            const preco = document.getElementById('preco').value
+
+            console.log(ambiente, nome, imagem, preco)
+
+            fetch('http://localhost:3030/moveis', {
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                method: 'post',
+                body: JSON.stringify({
+                    nome: nome,
+                    ambiente: ambiente,
+                    imagem: imagem,
+                    preco: preco
+                })
+            }).then((res) => {
+                console.log(res)
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
+
+        const sendDataPut = (btn) => {
+            const ambiente = document.getElementById('editarambiente').value
+            const nome = document.getElementById('editarnome').value
+            const imagem = document.getElementById('editarimagem').value
+            const preco = document.getElementById('editarpreco').value
+            const id = document.getElementById('editarid').value
+
+            fetch(`http://localhost:3030/moveis?id=${id}`, {
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                method: 'put',
+                body: JSON.stringify({
+                    nome: nome,
+                    ambiente: ambiente,
+                    imagem: imagem,
+                    preco: preco
+                })
+            }).then((res) => {
+                console.log(res)
+            }).catch(function(error) {
+                console.log(error);
+            });
+
+            window.location.reload();
+        }
+
+        const deleteMovel = async (btn) => {
+            const moveisList = await fetch(`http://localhost:3030/moveis?id=${$(btn).parent().attr('id')}`, {
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            method: 'delete'
+            })
+            .then((data) => {
+            return data
+            }).catch(function(error) {
+            console.log(error);
+            return 0;
+            });
+
+            window.location.reload();
+        }
+    </script>
+    <script src="../js/index.js"></script>
+    
 </body>
 </html>
